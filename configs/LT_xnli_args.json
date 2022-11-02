@@ -1,0 +1,23 @@
+{
+    "output_dir": "output/xnli",
+    "dataset_name":"xnli",
+    "task_name": "xnli",
+    "data_language": "fr",
+    "log_dir": "runs/XNLI",
+    "do_train": true,
+    "do_eval": true,
+    "do_predict": false,
+    "evaluate_during_training": true,
+    "rand_seed":false,
+    "pad_to_max_length": true,
+    "gradient_accumulation_steps":1,
+    "max_seq_length": 128,
+    "per_device_train_batch_size": 32,
+    "per_device_eval_batch_size": 32,
+    "learning_rate": 5e-5,
+    "num_train_epochs": 30,
+    "save_steps": 36813,
+    "logging_steps": 36813,
+    "overwrite_output_dir": true,
+    "seed":57
+}
