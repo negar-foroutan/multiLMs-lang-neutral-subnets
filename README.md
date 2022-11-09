@@ -6,7 +6,7 @@ Code for the paper: "[Discovering Language-neutral Sub-networks in Multilingual 
 
 The following figure shows an overview of our approach. We discover sub-networks in the original multilingual language model that are good foundations for learning various tasks and languages (a). Then, we investigate to what extent these sub-networks are similar by transferring them across other task-language pairs (b). In this example, the **blue** and **red** lines show sub-networks found for French and Urdu, respectively, and **purple** connections are shared in both sub-networks. Dashed lines show the weights that are removed in the pruning phase.
 
-![alt text](./figs/model_overveiw.png?raw=true)
+![alt text](./figs/model_overview.png?raw=true)
 
 
 ## Requirements
