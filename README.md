@@ -2,7 +2,7 @@
 # Discovering Language-neutral Sub-networks in Multilingual Language Models
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-Code for the paper: "[Discovering Language-neutral Sub-networks in Multilingual Language Models](https://arxiv.org/abs/2205.12672)" [to appear in EMNLP 2022]
+Code for the paper: "[Discovering Language-neutral Sub-networks in Multilingual Language Models](https://arxiv.org/abs/2205.12672)" [EMNLP 2022]
 
 The following figure shows an overview of our approach. We discover sub-networks in the original multilingual language model that are good foundations for learning various tasks and languages (a). Then, we investigate to what extent these sub-networks are similar by transferring them across other task-language pairs (b). In this example, the **blue** and **red** lines show sub-networks found for French and Urdu, respectively, and **purple** connections are shared in both sub-networks. Dashed lines show the weights that are removed in the pruning phase.
 
@@ -218,7 +218,8 @@ If you use this code for your research, please cite our paper:
 @article{foroutan2022discovering,
   title={Discovering Language-neutral Sub-networks in Multilingual Language Models},
   author={Foroutan, Negar and Banaei, Mohammadreza and Lebret, Remi and Bosselut, Antoine and Aberer, Karl},
-  journal={arXiv preprint arXiv:2205.12672},
+  booktitle={Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  url={https://arxiv.org/pdf/2205.12672.pdf},
   year={2022}
 }
 ```
