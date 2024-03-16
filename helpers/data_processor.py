@@ -22,12 +22,21 @@ class JsonTextDataset(Dataset):
     def __init__(self, tokenizer, args, file_path):
         
         if file_path.endswith(".pkl") and not args.overwrite_cache:
-            logger.info("Loading features from cached file %s", file_path)
-            with open(file_path, "rb") as handle:
-                self.examples = pickle.load(handle)
+            if os.path.exists(file_path):
+                logger.info("Loading features from cached file %s", file_path)
+                with open(file_path, "rb") as handle:
+                    self.examples = pickle.load(handle)
+            else:
+                raise ValueError("The cache file does not exist!")
         else:
             logger.info("Creating features from dataset file at %s", file_path)
             
+            block_size = args.block_size - (tokenizer.model_max_length - tokenizer.max_len_single_sentence)
+            directory, filename = os.path.split(file_path)
+            cached_features_file = os.path.join(
+                    directory, args.model_type + "_cached_lm_" + str(block_size) + "_" + filename + ".pkl"
+            )
+
             t0 = time.time()
             input_file = open(file_path, 'r')
             log_counter = 0
@@ -65,11 +74,6 @@ class JsonTextDataset(Dataset):
             logger.info("Number of samples: {}, Time: {:.2f} seconds.".format(len(self.examples), time.time() - t0))
             logger.info("Saving features into cached file %s", cached_features_file)
             
-            block_size = args.block_size - (tokenizer.model_max_length - tokenizer.max_len_single_sentence)
-            directory, filename = os.path.split(file_path)
-            cached_features_file = os.path.join(
-                directory, args.model_type + "_cached_lm_" + str(block_size) + "_" + filename + ".pkl"
-            )
             with open(cached_features_file, "wb") as handle:
                 pickle.dump(self.examples, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
