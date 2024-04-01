@@ -31,7 +31,7 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 
-from helpers.pruning_utils import rewind, pruning_model, see_weight_rate, component_wise_pruning_model
+from helpers.pruning_utils import rewind, pruning_model, see_weight_rate
 from helpers.utils import set_seed
 from datasets import ClassLabel, load_dataset, load_metric
 
@@ -405,10 +405,7 @@ def train(args, train_dataset, eval_dataset, model, data_collator, compute_metri
 
                     logger.info('starting pruning')
                     logger.info('saving model for ', 100-pruning_step*10)
-                    if args.pruning_method == "component_wise":
-                        component_wise_pruning_model(model, 1/(10-pruning_step))
-                    else:
-                        pruning_model(model, 1/(10-pruning_step))
+                    pruning_model(model, 1/(10-pruning_step))
                     rate_weight_equal_zero = see_weight_rate(model)
                     pruning_step += 1
                     logger.info('zero_rate = ', rate_weight_equal_zero)
